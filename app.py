@@ -32,7 +32,6 @@ def prepare_image(image_path):
 @app.route('/')
 def index():
     return render_template('index.html')
-
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
@@ -55,4 +54,5 @@ def upload_file():
         return render_template('result.html', result=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
